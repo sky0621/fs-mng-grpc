@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package pb;
+
+service Review {
+    // 審査機関の一覧を取得
+    rpc ListFacility(ListFacilityRequest) returns (ListFacilityResponse) {}
+    // 特定(プレ)オーダーの審査記録一覧を取得
+    rpc ListRecord(ListRecordRequest) returns (ListRecordResponse) {}
+}
+
+message ListFacilityRequest {}
+
+message ListFacilityResponse {
+    repeated Facility facilities = 1;
+}
+
+// 審査機関
+message Facility {
+    string ID = 1;
+    string name = 2;
+}
+
+message ListRecordRequest {
+    string orderID = 1;
+}
+
+message ListRecordResponse {
+    repeated Record records = 1;
+}
+
+// 審査記録
+message Record {
+    string ID = 1;
+    string note = 2;
+    int64 recordDatetime = 3;
+}
