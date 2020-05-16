@@ -1,4 +1,4 @@
-module github.com/sky0621/fs-mng-grpc
+module github.com/sky0621/fs-mng-grpc/
 
 go 1.13
 
