@@ -2,8 +2,8 @@ package main
 
 import (
 	"context"
-	"github.com/sky0621/fs-mng-grpc/common"
-	"github.com/sky0621/fs-mng-grpc/pb"
+	"github.com/sky0621/fs-mng-grpc/src/common"
+	"github.com/sky0621/fs-mng-grpc/src/pb"
 	"google.golang.org/grpc"
 	"log"
 	"net"
