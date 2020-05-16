@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"github.com/sky0621/fs-mng-grpc/review"
+	"github.com/sky0621/fs-mng-grpc/pb"
 	"github.com/sky0621/fs-mng-grpc/samples/common"
 	"google.golang.org/grpc"
 	"log"
@@ -23,13 +23,13 @@ func main() {
 		}
 	}()
 
-	cli := review.NewReviewClient(conn)
+	cli := pb.NewReviewClient(conn)
 
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
 	{
-		res, err := cli.ListFacility(ctx, &review.ListFacilityRequest{
+		res, err := cli.ListFacility(ctx, &pb.ListFacilityRequest{
 			// MEMO: no parameter
 		})
 		if err != nil {
@@ -43,7 +43,7 @@ func main() {
 	}
 
 	{
-		res, err := cli.ListRecord(ctx, &review.ListRecordRequest{
+		res, err := cli.ListRecord(ctx, &pb.ListRecordRequest{
 			// MEMO: no parameter
 		})
 		if err != nil {
