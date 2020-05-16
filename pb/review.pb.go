@@ -548,7 +548,7 @@ func (c *reviewClient) ListRecord(ctx context.Context, in *ListRecordRequest, op
 	return out, nil
 }
 
-// ReviewServer is the server API for Review service.
+// ReviewServer is the server_web API for Review service.
 type ReviewServer interface {
 	// 審査機関の一覧を取得
 	ListFacility(context.Context, *ListFacilityRequest) (*ListFacilityResponse, error)
