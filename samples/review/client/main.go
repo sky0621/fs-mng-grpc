@@ -10,7 +10,9 @@ import (
 )
 
 func main() {
-	conn, err := grpc.Dial("localhost"+common.ReviewServerPort, grpc.WithInsecure(), grpc.WithBlock())
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+	conn, err := grpc.DialContext(ctx, "localhost"+common.ReviewGrpcServerPort, grpc.WithInsecure(), grpc.WithBlock())
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
@@ -24,9 +26,6 @@ func main() {
 	}()
 
 	cli := pb.NewReviewClient(conn)
-
-	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
-	defer cancel()
 
 	{
 		res, err := cli.ListFacility(ctx, &pb.ListFacilityRequest{

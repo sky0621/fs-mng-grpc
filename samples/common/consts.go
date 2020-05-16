@@ -1,5 +1,6 @@
 package common
 
 const (
-	ReviewServerPort = ":60001"
+	ReviewWebServerPort = ":6001"
+	ReviewGrpcServerPort = ":60001"
 )

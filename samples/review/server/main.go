@@ -2,11 +2,12 @@ package main
 
 import (
 	"context"
+	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	"github.com/sky0621/fs-mng-grpc/pb"
 	"github.com/sky0621/fs-mng-grpc/samples/common"
 	"google.golang.org/grpc"
 	"log"
-	"net"
+	"net/http"
 )
 
 type server struct {
@@ -40,13 +41,18 @@ func (s *server) ListRecord(ctx context.Context, req *pb.ListRecordRequest) (*pb
 }
 
 func main() {
-	lis, err := net.Listen("tcp", common.ReviewServerPort)
-	if err != nil {
-		log.Fatalf("failed to listen: %v", err)
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+
+	mux := runtime.NewServeMux()
+
+	opts := []grpc.DialOption{grpc.WithInsecure()}
+
+	if err := pb.RegisterReviewHandlerFromEndpoint(ctx, mux, "localhost"+common.ReviewGrpcServerPort, opts); err != nil {
+		log.Fatalf("failed to gRPC serve: %v", err)
 	}
-	s := grpc.NewServer()
-	pb.RegisterReviewServer(s, &server{})
-	if err := s.Serve(lis); err != nil {
-		log.Fatalf("failed to serve: %v", err)
+
+	if err := http.ListenAndServe(common.ReviewWebServerPort, mux); err != nil {
+		log.Fatalf("failed to Web serve: %v", err)
 	}
 }

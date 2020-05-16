@@ -20,4 +20,5 @@ protoc\
  --go_out=plugins=grpc,paths=source_relative:./pb\
  --grpc-gateway_out=logtostderr=true,paths=source_relative:./pb\
  --doc_out=html,review.html:./doc/\
+ --swagger_out=logtostderr=true:./doc/\
  -I schema/ schema/review.proto

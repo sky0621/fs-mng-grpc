@@ -8,12 +8,15 @@ service Review {
     // 審査機関の一覧を取得
     rpc ListFacility(ListFacilityRequest) returns (ListFacilityResponse) {
         option (google.api.http) = {
-        post: "/v1/review/facilities"
-        body: "*"
-    };
+            get: "/v1/review/facilities"
+        };
     }
     // 特定(プレ)オーダーの審査記録一覧を取得
-    rpc ListRecord(ListRecordRequest) returns (ListRecordResponse) {}
+    rpc ListRecord(ListRecordRequest) returns (ListRecordResponse) {
+        option (google.api.http) = {
+            get: "/v1/review/records"
+        };
+    }
 }
 
 message ListFacilityRequest {}
