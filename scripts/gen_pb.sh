@@ -16,4 +16,8 @@ echo ${SCRIPT_DIR}
 
 cd ${SCRIPT_DIR} && cd ../
 
-protoc -I schema/ schema/review.proto --go_out=plugins=grpc:pb --doc_out=html,review.html:./doc/
+protoc\
+ --go_out=plugins=grpc,paths=source_relative:./pb\
+ --grpc-gateway_out=logtostderr=true,paths=source_relative:./pb\
+ --doc_out=html,review.html:./doc/\
+ -I schema/ schema/review.proto

@@ -2,9 +2,16 @@ syntax = "proto3";
 
 option go_package = ".;pb";
 
+import "google/api/annotations.proto";
+
 service Review {
     // 審査機関の一覧を取得
-    rpc ListFacility(ListFacilityRequest) returns (ListFacilityResponse) {}
+    rpc ListFacility(ListFacilityRequest) returns (ListFacilityResponse) {
+        option (google.api.http) = {
+        post: "/v1/review/facilities"
+        body: "*"
+    };
+    }
     // 特定(プレ)オーダーの審査記録一覧を取得
     rpc ListRecord(ListRecordRequest) returns (ListRecordResponse) {}
 }
