@@ -2,8 +2,8 @@ package main
 
 import (
 	"context"
-	"github.com/sky0621/fs-mng-grpc/common"
-	"github.com/sky0621/fs-mng-grpc/pb/review"
+	"github.com/sky0621/fs-mng-grpc/samples/common"
+	"github.com/sky0621/fs-mng-grpc/review"
 	"google.golang.org/grpc"
 	"log"
 	"time"
