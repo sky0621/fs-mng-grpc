@@ -2,11 +2,12 @@ package main
 
 import (
 	"context"
+	"log"
+	"time"
+
 	"github.com/sky0621/fs-mng-grpc/pb"
 	"github.com/sky0621/fs-mng-grpc/samples/common"
 	"google.golang.org/grpc"
-	"log"
-	"time"
 )
 
 func main() {
@@ -16,7 +17,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
-	defer func(){
+	defer func() {
 		if conn == nil {
 			return
 		}

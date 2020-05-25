@@ -2,11 +2,12 @@ package main
 
 import (
 	"context"
+	"log"
+	"net"
+
 	"github.com/sky0621/fs-mng-grpc/pb"
 	"github.com/sky0621/fs-mng-grpc/samples/common"
 	"google.golang.org/grpc"
-	"log"
-	"net"
 )
 
 type server struct {
@@ -23,7 +24,7 @@ func (s *server) ListFacility(ctx context.Context, req *pb.ListFacilityRequest) 
 			{ID: "1579f658-0821-4834-ad82-d3eaf12ac3f4", Name: "審査機関２"},
 			{ID: "a205aa40-3f3f-4dc6-8278-f1653030c658", Name: "審査機関３"},
 		},
-	},nil
+	}, nil
 }
 
 // 特定(プレ)オーダーの審査記録一覧を取得
@@ -36,7 +37,7 @@ func (s *server) ListRecord(ctx context.Context, req *pb.ListRecordRequest) (*pb
 			{ID: "d5ea2a4b-377b-4e04-8002-9deddcd75ac9", Note: "審査メモ２", RecordDatetime: 1589416160},
 			{ID: "887b225b-5945-445c-babd-b0c9f12bd623", Note: "審査メモ３", RecordDatetime: 1589416188},
 		},
-	},nil
+	}, nil
 }
 
 func main() {
